@@ -1,0 +1,58 @@
+# =========================
+#  CẤU HÌNH NHẬN DIỆN THỜI GIAN THỰC
+# =========================
+
+# Đường dẫn model YOLO
+model_path: "./models/best.pt"
+
+# ... phần trên giữ nguyên ...
+confidence: 0.55
+cooldown_sec: 4.0
+
+# Ngưỡng riêng từng class (nếu không có sẽ dùng 'confidence' chung)
+class_thresholds:
+  person: 0.60
+  car: 0.30
+  motorbike: 0.35
+  bicycle: 0.35
+  cow: 0.40
+  dog: 0.40
+  cat: 0.40
+  horse: 0.40
+  sheep: 0.40
+# Âm thanh
+sound_root: "./am_thanh"
+use_default_fallback: true
+
+# =========================
+# TÙY CHỌN HIỂN THỊ MẶC ĐỊNH
+# =========================
+show_window: true
+window_max_width: 960
+show_wait_ms: 10
+draw_boxes: true
+
+
+# =========================
+#  DANH SÁCH CAMERA
+# =========================
+cameras:
+  - name: cong_nha_may
+    src: "rtsp://conh:conh_123@117.3.71.224:5000/cam/realmonitor?channel=14&subtype=0"
+    confidence: 0.25
+    cooldown_sec: 5.0
+    enabled_classes: [0,1,2,3,4,5,6,7,8]
+    # Override hiển thị: BẬT
+    show_window: true
+    draw_boxes: true
+    window_max_width: 960
+
+  - name: tram_phan_phoi
+    src: "rtsp://conh:conh_123@117.3.71.224:5000/cam/realmonitor?channel=13&subtype=0"
+    enabled_classes: [0,1,2,3,4,5,6,7,8]
+    # Sẽ dùng global show_window=false (KHÔNG hiển thị)
+
+  - name: dap_tran
+    src: "rtsp://conh:conh_123@117.3.71.224:5000/cam/realmonitor?channel=02&subtype=0"
+    enabled_classes: [0,1,2,3,4,5,6,7,8]
+    # Sẽ dùng global show_window=false (KHÔNG hiển thị)
